@@ -16,7 +16,7 @@ export class OrdersService {
     return newOrder;
   }
   public update(id: Order['id'], orderData: Omit<Order, 'id'>): void {
-    db.orders.map((order) => {
+    db.orders = db.orders.map((order) => {
       if (order.id === id) return { ...order, ...orderData };
       return order;
     });
