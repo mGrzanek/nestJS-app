@@ -17,11 +17,13 @@ model Product {
   description String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  orders    Order[]
 }
 
 model Order {
   id String @id @default(uuid())
   client String
+  product   Product @relation(fields: [productId], references: [id])
   productId String
   address String
   createdAt DateTime @default(now())
