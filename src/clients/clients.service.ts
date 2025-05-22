@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { v4 as uuidv4 } from 'uuid';
 import { Client } from '@prisma/client';
 import { PrismaService } from 'src/shared/services/prisma.service';
 
@@ -33,9 +32,8 @@ export class ClientsService {
   public create(
     clientData: Omit<Client, 'id' | 'createdAt' | 'updatedAt'>,
   ): Promise<Client> {
-    const newClient = { ...clientData, id: uuidv4() };
     return this.prismaService.client.create({
-      data: newClient,
+      data: clientData,
     });
   }
   public updateById(
